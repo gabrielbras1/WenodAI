@@ -237,8 +237,9 @@ nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
-    position: relative;
+    padding: 20px 0;
+    color: var(--white);
+    transition: var(--transition);
 }
 
 .logo {
@@ -262,7 +263,9 @@ nav .container {
 
 .nav-links {
     display: flex;
+    gap: 30px;
     align-items: center;
+    
     gap: 30px;
     position: absolute;
     left: 50%;
@@ -738,6 +741,15 @@ select {
     h1 { font-size: 3rem; }
     h2.section-title { font-size: 2.2rem; }
     .contact-container { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 769px) {
+    .nav-links {
+        display: flex !important; /* Ensure desktop links are always visible */
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 @media (max-width: 768px) {
