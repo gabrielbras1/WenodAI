@@ -223,23 +223,14 @@ nav {
     width: 100%;
     padding: 20px 0;
     z-index: 1000;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    color: var(--white);
     transition: var(--transition);
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(10px);
 }
 
 nav.scrolled {
-    padding: 15px 0;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-}
-
-nav .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    color: var(--white);
-    transition: var(--transition);
+    background-color: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
 }
 
 .logo {
@@ -261,15 +252,29 @@ nav .container {
     background-clip: text;
 }
 
+/* Mobile First: Nav links are hidden by default */
 .nav-links {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    
-    gap: 30px;
+    display: none;
+    flex-direction: column;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 100%; /* Position below the nav bar */
+    left: 0;
+    width: 100%;
+    background-color: rgba(10, 10, 25, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    border-top: 1px solid var(--primary-color-dark);
+}
+
+/* When the menu is open on mobile */
+.nav-links.active {
+    display: flex;
+}
+
+.nav-links a {
+    text-align: center;
+    padding: 1rem 0;
+    width: 100%;
 }
 
 .nav-links a:not(.btn) {
@@ -727,9 +732,9 @@ select {
     transform: translateY(-3px);
 }
 
-/* Estilos do Menu Mobile */
+/* Mobile menu icon is always visible on mobile */
 .mobile-menu {
-    display: none; /* Escondido por padrão */
+    display: block;
     cursor: pointer;
     font-size: 1.8rem;
     color: var(--light-color);
@@ -743,44 +748,28 @@ select {
     .contact-container { grid-template-columns: 1fr; }
 }
 
+/* Desktop Styles */
 @media (min-width: 769px) {
     .nav-links {
-        display: flex !important; /* Ensure desktop links are always visible */
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
-
-@media (max-width: 768px) {
-    h1 { font-size: 3rem; }
-    h2.section-title { font-size: 2.2rem; }
-    .contact-container { grid-template-columns: 1fr; }
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 80px; /* Altura do header */
-        left: 0;
-        width: 100%;
-        background-color: rgba(10, 10, 25, 0.98); /* Fundo escuro com transparência */
-        backdrop-filter: blur(10px);
-        padding: 2rem 0;
-        border-top: 1px solid var(--primary-color-dark);
-    }
-
-    .nav-links.active {
-        display: flex; /* Mostra o menu quando ativo */
+        display: flex;
+        flex-direction: row;
+        position: static; /* Reset position for desktop */
+        width: auto;
+        background-color: transparent;
+        backdrop-filter: none;
+        padding: 0;
+        border-top: none;
+        gap: 30px;
+        align-items: center;
     }
 
     .nav-links a {
-        text-align: center;
-        padding: 1rem 0;
-        width: 100%;
+        padding: 0;
+        width: auto;
     }
 
     .mobile-menu {
-        display: block; /* Mostra o ícone do hamburger */
+        display: none; /* Hide hamburger on desktop */
     }
     .hero-content h1 { font-size: 2.5rem; }
     .hero-content p { font-size: 1.1rem; }
